@@ -1,0 +1,39 @@
+services:
+  yarn:
+    image: node:18
+    working_dir: /workspace
+    volumes:
+      - ./:/workspace
+      - modules:/workspace/node_modules
+      - yarncache:/workspace/.yarn-cache
+    environment:
+      - YARN_CACHE_FOLDER=/workspace/.yarn-cache
+    entrypoint: yarn
+
+  postgres-news-api:
+    image: bitnami/postgresql
+    environment:
+      - POSTGRESQL_PASSWORD=postgres
+      - POSTGRESQL_DATABASE=news
+    ports:
+      - "5432:5432"
+    networks:
+      - default
+
+  news-api:
+    image: node:18
+    working_dir: /workspace
+    ports:
+      - 3000:3000
+    environment:
+      - PORT=3000
+    depends_on:
+      - postgres-news-api
+    volumes:
+      - ./:/workspace
+      - modules:/workspace/node_modules
+    entrypoint: yarn start
+
+volumes:
+  modules:
+  yarncache:

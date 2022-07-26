@@ -1,0 +1,16 @@
+#idea
+.idea/
+
+#modules
+/node_modules
+
+#build
+/dist
+
+# env
+.env
+
+# yaml
+config.yaml
+
+.DS_STORE
