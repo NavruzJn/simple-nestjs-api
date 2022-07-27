@@ -1,6 +1,6 @@
-#Simple Nest JS Api
+# Simple Nest JS Api
 
-This repo is created only for complete test assessment
+This repo is created only to complete test assessment
 
 To launch project:
 
@@ -8,7 +8,7 @@ For docker users: ```docker-compose run yarn && docker-compose up```
 
 For native users: ```yarn && yarn start```
 
-###TODOs
+### TODOs
 1. Use Observables
 2. Add more tests (coverage should be > 60)
 3. Validate config (Joi can be used)
