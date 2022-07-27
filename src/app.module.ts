@@ -3,23 +3,23 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
 import { appConfig } from "./config";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { AuthModule } from "./auth";
-import { UsersModule } from "./users";
 import { NewsModule } from "./news";
 
 @Module({
   imports: [
-    AuthModule,
-    UsersModule,
-    NewsModule,
+    ConfigModule.forRoot({
+      isGlobal: true,
+      cache: true,
+      load: [appConfig],
+    }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) =>
-          configService.get("database"),
+        configService.get("database"),
       inject: [ConfigService],
     }),
-    ConfigModule.forRoot({
-      load: [appConfig],
-    }),
+    NewsModule,
+    AuthModule,
   ],
 })
 export class AppModule {}

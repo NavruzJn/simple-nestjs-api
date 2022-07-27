@@ -12,13 +12,13 @@ export class NewsEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: "varchar" })
+  @Column()
   title!: string;
 
-  @Column({ type: "varchar" })
+  @Column()
   description!: string;
 
-  @Column({ type: "longtext" })
+  @Column()
   content!: string;
 
   @Column({ type: "enum", enum: NewsCategory })
@@ -27,7 +27,7 @@ export class NewsEntity {
   @Column({ type: "enum", enum: NewsStatus })
   status: NewsStatus;
 
-  @Column({ type: "datetime" })
+  @Column({ type: "timestamp", nullable: true })
   publishedDate: Date;
 
   @UpdateDateColumn()

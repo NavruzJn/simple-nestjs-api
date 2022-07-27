@@ -18,6 +18,8 @@ auth:
     signOptions:
       expiresIn: '10m'
 
+env: dev
+
 
 
 

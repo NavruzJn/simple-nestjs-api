@@ -16,4 +16,5 @@ export type AppConfig = {
     logging: boolean;
   };
   port: number;
+  env: string;
 };

@@ -10,15 +10,15 @@ import { JwtStrategy } from "./jwt";
 @Module({
   imports: [
     UsersModule,
+    PassportModule.register({ defaultStrategy: "jwt" }),
     JwtModule.registerAsync({
       useFactory: async (configService: ConfigService) =>
         configService.get("auth.jwt"),
       inject: [ConfigService],
     }),
-    PassportModule.register({ defaultStrategy: 'jwt' })
   ],
   controllers: [AuthController],
   providers: [AuthService, JwtStrategy],
-  exports: [JwtStrategy, PassportModule, JwtModule],
+  exports: [AuthService],
 })
 export class AuthModule {}
